@@ -2,241 +2,339 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>VOID ATLAS — Space Intelligence System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VOID ATLAS — Mount Olympus Edition</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
 <style>
+/* ======================================================
+   CORE VARIABLES
+====================================================== */
 :root{
-  --bg:#050608;
-  --panel:#0b1224;
-  --text:#eef1f6;
-  --muted:#9aa3b2;
-  --blue:#4da3ff;
-  --border:rgba(255,255,255,0.08);
+  --bg:#02030a;
+  --panel:#070b1a;
+  --line:#1b2140;
+  --text:#e8ebf3;
+  --muted:#9aa4c7;
+  --accent:#4da3ff;
+  --cyan:#22d3ee;
 }
+
+/* ======================================================
+   RESET
+====================================================== */
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  background:radial-gradient(circle at top,#0c1325,var(--bg));
-  color:var(--text);
   font-family:Inter,sans-serif;
-  line-height:1.85;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
 }
-section{padding:130px 8vw}
-h1,h2,h3{
-  font-family:"Space Grotesk";
-  letter-spacing:.04em;
+
+/* ======================================================
+   STARFIELD CANVAS
+====================================================== */
+#stars{
+  position:fixed;
+  inset:0;
+  z-index:-1;
 }
-h1{font-size:clamp(3.8rem,9vw,6.5rem)}
-h2{font-size:2.8rem;margin-bottom:25px}
-h3{font-size:1.45rem;margin-bottom:12px}
-p{color:var(--muted);max-width:1100px}
-.panel{background:var(--panel)}
-.divider{
-  height:1px;
-  background:linear-gradient(to right,transparent,var(--border),transparent);
-  margin:120px 0;
+
+/* ======================================================
+   APP LAYOUT
+====================================================== */
+.app{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  min-height:100vh;
 }
-footer{
-  padding:70px;
-  border-top:1px solid var(--border);
-  text-align:center;
+
+/* ======================================================
+   LEFT NAV (WIKIPEDIA STYLE)
+====================================================== */
+.nav{
+  position:sticky;
+  top:0;
+  height:100vh;
+  padding:28px 22px;
+  background:rgba(7,11,26,.85);
+  backdrop-filter:blur(10px);
+  border-right:1px solid var(--line);
+  overflow:auto;
+}
+
+.nav h1{
+  font-family:Space Grotesk;
+  letter-spacing:.2em;
+  font-size:1.1rem;
+  margin-bottom:40px;
+}
+
+.nav a{
+  display:block;
+  font-family:JetBrains Mono;
   font-size:.85rem;
   color:var(--muted);
+  text-decoration:none;
+  margin-bottom:14px;
+}
+
+.nav a:hover{color:var(--accent)}
+
+/* ======================================================
+   CONTENT AREA
+====================================================== */
+.content{
+  padding:80px 8vw;
+  max-width:1600px;
+}
+
+.section{
+  margin-bottom:160px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.section.visible{
+  opacity:1;
+  transform:none;
+}
+
+.section small{
+  font-family:JetBrains Mono;
+  color:var(--accent);
+  letter-spacing:.2em;
+}
+
+.section h2{
+  font-family:Space Grotesk;
+  font-size:3rem;
+  margin:18px 0 30px;
+}
+
+.section p{
+  max-width:1000px;
+  line-height:2;
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+/* ======================================================
+   DIVIDER
+====================================================== */
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--line),transparent);
+  margin:120px 0;
+}
+
+/* ======================================================
+   DATA BLOCK
+====================================================== */
+.data{
+  margin-top:35px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:28px;
+  font-family:JetBrains Mono;
+  font-size:.85rem;
+}
+
+/* ======================================================
+   TIMELINE
+====================================================== */
+.timeline{
+  border-left:2px solid var(--line);
+  margin-top:40px;
+  padding-left:40px;
+}
+
+.event{
+  margin-bottom:40px;
+  position:relative;
+}
+
+.event::before{
+  content:'';
+  position:absolute;
+  left:-51px;
+  top:4px;
+  width:12px;
+  height:12px;
+  background:var(--accent);
+  border-radius:50%;
+}
+
+.event h4{
+  font-family:Space Grotesk;
+  font-size:1.2rem;
+}
+
+.event span{
+  font-family:JetBrains Mono;
+  font-size:.8rem;
+  color:var(--cyan);
+}
+
+/* ======================================================
+   LOAD MORE
+====================================================== */
+#loader{
+  text-align:center;
+  font-family:JetBrains Mono;
+  color:var(--muted);
+  padding:100px 0;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero" style="min-height:100vh;display:flex;align-items:center;text-align:center;justify-content:center">
-  <div>
-    <h1>VOID ATLAS</h1>
-    <p>
-      A deep cartography of the universe —  
-      its structure, its missions, and humanity’s longest journey upward.
-    </p>
+<canvas id="stars"></canvas>
+
+<div class="app">
+
+<!-- NAV -->
+<nav class="nav">
+  <h1>VOID ATLAS</h1>
+  <a href="#intro">01_INTRO</a>
+  <a href="#isro">02_ISRO</a>
+  <a href="#apollo">03_APOLLO</a>
+  <a href="#chandra">04_CHANDRAYAAN</a>
+  <a href="#mars">05_MARS</a>
+  <a href="#latest">06_LATEST</a>
+</nav>
+
+<!-- CONTENT -->
+<main class="content" id="content">
+
+<section id="intro" class="section">
+  <small>01 / SPACE SYSTEM</small>
+  <h2>Space Is Structured</h2>
+  <p>
+    Space is not emptiness. It is a measurable physical system governed by
+    quantum fields, gravity, radiation, and plasma dynamics.
+  </p>
+  <div class="data">
+    UNIVERSE AGE : 13.8 BILLION YEARS<br>
+    COSMIC MICROWAVE BACKGROUND : 2.7K
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ABOUT -->
-<section>
-  <h2>About Void Atlas</h2>
+<section id="isro" class="section">
+  <small>02 / ISRO</small>
+  <h2>Indian Space Research Organisation</h2>
   <p>
-    Void Atlas is not a news site, not a blog, and not a textbook.
-    It is a long-form space intelligence platform designed to document
-    humanity’s relationship with the universe in depth.
-  </p>
-  <p>
-    From the invisible gas between stars to the boots that touched the Moon,
-    Void Atlas exists to explain space as it truly is — vast, hostile,
-    beautiful, and largely unexplored.
+    ISRO represents cost-efficient engineering excellence, achieving
+    interplanetary missions with minimal budgets.
   </p>
 </section>
 
 <div class="divider"></div>
 
-<!-- SPACE REALITY -->
-<section class="panel">
-  <h2>Space Is Not Empty</h2>
-  <p>
-    The word “vacuum” often misleads people into believing space is nothingness.
-    In reality, space contains matter, energy, radiation, magnetic fields,
-    and fundamental forces operating at cosmic scales.
-  </p>
-  <p>
-    Interstellar space is filled with hydrogen gas, cosmic dust,
-    and energetic particles traveling near the speed of light.
-    Even the most empty regions of the universe are not truly empty.
-  </p>
+<section id="apollo" class="section">
+  <small>03 / APOLLO TIMELINE</small>
+  <h2>Apollo Missions</h2>
 
-  <h3>Interstellar Gas</h3>
-  <p>
-    Hydrogen and helium dominate the universe.
-    Massive clouds of these gases collapse under gravity to form stars.
-    Without gas, there would be no galaxies, no planets, and no life.
-  </p>
-
-  <h3>Radiation & Background Energy</h3>
-  <p>
-    The Cosmic Microwave Background is leftover radiation from the Big Bang,
-    still detectable today.
-    It defines the base temperature of the universe at approximately 2.7 Kelvin.
-  </p>
+  <div class="timeline">
+    <div class="event">
+      <span>1969</span>
+      <h4>Apollo 11</h4>
+      <p>First human landing on the Moon.</p>
+    </div>
+    <div class="event">
+      <span>1971</span>
+      <h4>Apollo 15</h4>
+      <p>Extended lunar surface exploration.</p>
+    </div>
+    <div class="event">
+      <span>1972</span>
+      <h4>Apollo 17</h4>
+      <p>Last crewed lunar mission.</p>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- GK -->
-<section>
-  <h2>Do You Know? — Cosmic Reality</h2>
+<section id="chandra" class="section">
+  <small>04 / CHANDRAYAAN</small>
+  <h2>Chandrayaan Missions</h2>
 
-  <p>• A single day on Venus is longer than a year on Venus.</p>
-  <p>• The Milky Way contains over 100 billion stars.</p>
-  <p>• Light from the Sun takes 8 minutes to reach Earth.</p>
-  <p>• Neutron stars can spin hundreds of times per second.</p>
-  <p>• The universe is expanding faster every second.</p>
-  <p>• More than 95% of the universe is invisible to us.</p>
+  <div class="timeline">
+    <div class="event">
+      <span>2008</span>
+      <h4>Chandrayaan-1</h4>
+      <p>Confirmed water molecules on Moon.</p>
+    </div>
+    <div class="event">
+      <span>2019</span>
+      <h4>Chandrayaan-2</h4>
+      <p>Orbiter success, lander partial failure.</p>
+    </div>
+    <div class="event">
+      <span>2023</span>
+      <h4>Chandrayaan-3</h4>
+      <p>First soft landing near lunar south pole.</p>
+    </div>
+  </div>
 </section>
 
-<div class="divider"></div>
+<div id="loader">LOADING MORE DATA…</div>
 
-<!-- ISRO -->
-<section class="panel">
-  <h2>ISRO — India’s Space Journey</h2>
-  <p>
-    The Indian Space Research Organisation (ISRO) represents one of the most
-    cost-effective and precise space programs in the world.
-    With limited budgets, ISRO has achieved missions that rival global agencies.
-  </p>
+</main>
+</div>
 
-  <h3>Chandrayaan-1</h3>
-  <p>
-    Launched in 2008, Chandrayaan-1 confirmed the presence of water molecules
-    on the Moon. This discovery reshaped lunar science and future exploration.
-  </p>
+<script>
+/* ======================================================
+   STARFIELD
+====================================================== */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+let w,h,stars=[];
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
+}
+window.addEventListener("resize",resize);
+resize();
 
-  <h3>Chandrayaan-2</h3>
-  <p>
-    Although the lander failed during descent, the orbiter continues to operate,
-    delivering high-resolution lunar data and mapping resources.
-  </p>
+for(let i=0;i<400;i++){
+  stars.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*w});
+}
 
-  <h3>Chandrayaan-3</h3>
-  <p>
-    In 2023, India became the first nation to land near the Moon’s south pole —
-    a region critical for future human missions due to potential water ice.
-  </p>
+function animate(){
+  ctx.fillStyle="rgba(2,3,10,.4)";
+  ctx.fillRect(0,0,w,h);
+  ctx.fillStyle="#fff";
+  stars.forEach(s=>{
+    s.z-=2;
+    if(s.z<=0)s.z=w;
+    let x=(s.x-w/2)*(w/s.z)+w/2;
+    let y=(s.y-h/2)*(w/s.z)+h/2;
+    ctx.fillRect(x,y,1,1);
+  });
+  requestAnimationFrame(animate);
+}
+animate();
 
-  <h3>Mangalyaan (Mars Orbiter Mission)</h3>
-  <p>
-    India reached Mars on its first attempt, demonstrating advanced navigation,
-    communication, and deep-space engineering capabilities.
-  </p>
-</section>
+/* ======================================================
+   SECTION ANIMATIONS
+====================================================== */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("visible");
+  });
+},{threshold:.15});
 
-<div class="divider"></div>
-
-<!-- NASA -->
-<section>
-  <h2>NASA — Humanity Beyond Earth</h2>
-  <p>
-    NASA has driven space exploration from the early Cold War era
-    to modern deep-space telescopes and interplanetary rovers.
-  </p>
-
-  <h3>Apollo Program</h3>
-  <p>
-    Between 1969 and 1972, NASA landed humans on the Moon six times.
-    Apollo missions proved that humans could survive, work,
-    and return from another celestial body.
-  </p>
-
-  <h3>Why Apollo Still Matters</h3>
-  <p>
-    Apollo was not just a political victory.
-    It was an engineering miracle achieved with computers weaker
-    than today’s smartphones.
-  </p>
-</section>
-
-<div class="divider"></div>
-
-<!-- MOON -->
-<section class="panel">
-  <h2>Moon Missions — Global Effort</h2>
-  <p>
-    The Moon remains humanity’s primary testing ground for deep-space exploration.
-  </p>
-
-  <p>
-    Countries across the world now view the Moon as a gateway —
-    not a destination, but a stepping stone toward Mars and beyond.
-  </p>
-</section>
-
-<div class="divider"></div>
-
-<!-- MARS -->
-<section>
-  <h2>Mars — The Next Frontier</h2>
-  <p>
-    Mars is the most Earth-like planet in the solar system,
-    yet it is hostile, cold, and radiation-filled.
-  </p>
-
-  <h3>Why Mars?</h3>
-  <p>
-    Mars once had water, rivers, and possibly life.
-    Studying Mars helps answer one question:
-    Was Earth ever unique?
-  </p>
-
-  <h3>Mount Olympus</h3>
-  <p>
-    Mount Olympus is the tallest volcano in the solar system,
-    standing nearly 22 kilometers high —
-    almost three times taller than Mount Everest.
-  </p>
-</section>
-
-<div class="divider"></div>
-
-<!-- PHILOSOPHY -->
-<section>
-  <h2 style="text-align:center;opacity:.9">
-    We explore space not because it is easy,  
-    but because ignorance is heavier than gravity.
-  </h2>
-</section>
-
-<footer>
-© 2026 VOID ATLAS — Mount Olympus Edition
-</footer>
+document.querySelectorAll(".section").forEach(s=>observer.observe(s));
+</script>
 
 </body>
 </html>
