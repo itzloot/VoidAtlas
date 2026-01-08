@@ -2,15 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VOID ATLAS — Space Intelligence System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- FONTS -->
+<title>VOID ATLAS — Space Encyclopedia</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
 <style>
 /* ======================================================
-   CORE VARIABLES
+   ROOT VARIABLES
 ====================================================== */
 :root{
   --bg:#02030a;
@@ -20,6 +17,9 @@
   --muted:#9aa4c7;
   --accent:#4da3ff;
   --cyan:#22d3ee;
+  --hover:#66ccff;
+  --section-padding:80px;
+  --transition-speed:0.8s;
 }
 
 /* ======================================================
@@ -27,314 +27,315 @@
 ====================================================== */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  font-family:Inter,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
 /* ======================================================
    STARFIELD CANVAS
 ====================================================== */
-#stars{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-}
+#stars{position:fixed;inset:0;z-index:-1}
 
 /* ======================================================
    APP LAYOUT
 ====================================================== */
-.app{
-  display:grid;
-  grid-template-columns:280px 1fr;
-  min-height:100vh;
-}
+.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh;transition:all 0.5s ease}
 
 /* ======================================================
-   LEFT NAV (WIKIPEDIA STYLE)
+   LEFT NAV
 ====================================================== */
 .nav{
-  position:sticky;
-  top:0;
-  height:100vh;
-  padding:28px 22px;
-  background:rgba(7,11,26,.85);
-  backdrop-filter:blur(10px);
-  border-right:1px solid var(--line);
-  overflow:auto;
+  position:sticky;top:0;height:100vh;background:rgba(7,11,26,0.95);
+  backdrop-filter:blur(10px);border-right:1px solid var(--line);
+  padding:30px 22px;overflow:auto;transition:width 0.5s ease;
 }
-
 .nav h1{
-  font-family:Space Grotesk;
-  letter-spacing:.2em;
-  font-size:1.1rem;
-  margin-bottom:40px;
+  font-family:Space Grotesk;letter-spacing:.2em;font-size:1.2rem;margin-bottom:40px;
+  color:var(--accent);
 }
-
 .nav a{
-  display:block;
-  font-family:JetBrains Mono;
-  font-size:.85rem;
-  color:var(--muted);
-  text-decoration:none;
-  margin-bottom:14px;
+  display:block;font-family:JetBrains Mono;font-size:.9rem;color:var(--muted);
+  text-decoration:none;margin-bottom:14px;transition:0.3s ease;
 }
-
-.nav a:hover{color:var(--accent)}
+.nav a:hover{color:var(--hover);transform:translateX(5px)}
+.nav .hamburger{
+  display:none;cursor:pointer;font-size:1.5rem;color:var(--accent);
+  margin-bottom:20px;
+}
+.nav.collapsed{width:0;padding:0;overflow:hidden}
 
 /* ======================================================
    CONTENT AREA
 ====================================================== */
 .content{
-  padding:80px 8vw;
-  max-width:1600px;
+  padding:var(--section-padding) 8vw;
+  max-width:1700px;
 }
-
 .section{
   margin-bottom:160px;
   opacity:0;
   transform:translateY(40px);
-  transition:1s ease;
+  transition:var(--transition-speed) cubic-bezier(.2,.8,.2,1);
 }
-
-.section.visible{
-  opacity:1;
-  transform:none;
-}
-
-.section small{
-  font-family:JetBrains Mono;
-  color:var(--accent);
-  letter-spacing:.2em;
-}
-
-.section h2{
-  font-family:Space Grotesk;
-  font-size:3rem;
-  margin:18px 0 30px;
-}
-
-.section p{
-  max-width:1000px;
-  line-height:2;
-  color:var(--muted);
-  margin-bottom:20px;
-}
+.section.visible{opacity:1;transform:none}
+.section small{font-family:JetBrains Mono;color:var(--accent);letter-spacing:.2em}
+.section h2{font-family:Space Grotesk;font-size:3rem;margin:18px 0 28px}
+.section p{max-width:1000px;line-height:2;color:var(--muted);margin-bottom:20px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:120px 0}
 
 /* ======================================================
-   DIVIDER
-====================================================== */
-.divider{
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--line),transparent);
-  margin:120px 0;
-}
-
-/* ======================================================
-   DATA BLOCK
+   DATA BLOCKS & GK
 ====================================================== */
 .data{
-  margin-top:35px;
-  background:var(--panel);
-  border:1px solid var(--line);
-  padding:28px;
-  font-family:JetBrains Mono;
-  font-size:.85rem;
+  margin-top:30px;background:var(--panel);border:1px solid var(--line);
+  padding:28px;font-family:JetBrains Mono;font-size:.85rem;
+  transition:0.3s ease;
+}
+.data:hover{box-shadow:0 0 20px var(--accent)}
+.didyouknow{
+  border-left:3px solid var(--cyan);
+  padding-left:20px;
+  margin-top:30px;
+  color:#cfe9ff;
+  font-style:italic;
 }
 
 /* ======================================================
-   TIMELINE
+   TIMELINES
 ====================================================== */
-.timeline{
-  border-left:2px solid var(--line);
-  margin-top:40px;
-  padding-left:40px;
-}
-
-.event{
-  margin-bottom:40px;
-  position:relative;
-}
-
+.timeline{border-left:2px solid var(--line);padding-left:42px;margin-top:40px}
+.event{margin-bottom:42px;position:relative}
 .event::before{
   content:'';
   position:absolute;
-  left:-51px;
+  left:-53px;
   top:4px;
-  width:12px;
-  height:12px;
+  width:12px;height:12px;
   background:var(--accent);
   border-radius:50%;
 }
-
-.event h4{
-  font-family:Space Grotesk;
-  font-size:1.2rem;
-}
-
-.event span{
-  font-family:JetBrains Mono;
-  font-size:.8rem;
-  color:var(--cyan);
-}
+.event h4{font-family:Space Grotesk;font-size:1.25rem}
+.event span{font-family:JetBrains Mono;font-size:.8rem;color:var(--cyan)}
 
 /* ======================================================
-   LOAD MORE
+   Myth vs Science Grid
 ====================================================== */
-#loader{
-  text-align:center;
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  margin-top:30px;
+}
+.grid div{
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:20px;
   font-family:JetBrains Mono;
-  color:var(--muted);
-  padding:100px 0;
+  transition:0.3s ease;
+}
+.grid div:hover{box-shadow:0 0 20px var(--hover)}
+.grid div h4{font-family:Space Grotesk;margin-bottom:10px}
+
+/* ======================================================
+   PLANETS TABLE
+====================================================== */
+.table{
+  margin-top:30px;border:1px solid var(--line);
+}
+.table div{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+  padding:14px 18px;
+  font-family:JetBrains Mono;font-size:.85rem;
+}
+.table div:last-child{border-bottom:none}
+
+/* ======================================================
+   RESPONSIVE / HAMBURGER
+====================================================== */
+@media(max-width:900px){
+  .app{grid-template-columns:0 1fr}
+  .nav{position:fixed;top:0;left:0;z-index:999;height:100%;width:250px;transition:transform 0.3s ease}
+  .nav.collapsed{transform:translateX(-280px)}
+  .nav .hamburger{display:block}
 }
 </style>
 </head>
-
 <body>
-
 <canvas id="stars"></canvas>
-
 <div class="app">
-
-<!-- NAV -->
-<nav class="nav">
+<nav class="nav" id="sidebar">
+  <div class="hamburger" id="hamburger">&#9776;</div>
   <h1>VOID ATLAS</h1>
-  <a href="#intro">01_INTRO</a>
-  <a href="#isro">02_ISRO</a>
-  <a href="#apollo">03_APOLLO</a>
-  <a href="#chandra">04_CHANDRAYAAN</a>
-  <a href="#mars">05_MARS</a>
-  <a href="#latest">06_LATEST</a>
+  <a href="#intro">Intro</a>
+  <a href="#about">About</a>
+  <a href="#nasa">NASA Missions</a>
+  <a href="#apollo">Apollo Missions</a>
+  <a href="#isro">ISRO Missions</a>
+  <a href="#chandrayaan">Chandrayaan & Mangalyaan</a>
+  <a href="#structures">Structures</a>
+  <a href="#mythscience">Myth vs Science</a>
+  <a href="#blackholes">Black & White Holes</a>
+  <a href="#planets">Planets</a>
 </nav>
+<main class="content">
 
-<!-- CONTENT -->
-<main class="content" id="content">
-
+<!-- INTRO -->
 <section id="intro" class="section">
-  <small>01 / SPACE SYSTEM</small>
-  <h2>Space Is Structured</h2>
-  <p>
-    Space is not emptiness. It is a measurable physical system governed by
-    quantum fields, gravity, radiation, and plasma dynamics.
-  </p>
-  <div class="data">
-    UNIVERSE AGE : 13.8 BILLION YEARS<br>
-    COSMIC MICROWAVE BACKGROUND : 2.7K
+  <small>01 / INTRO</small>
+  <h2>Welcome to VOID ATLAS</h2>
+  <p>The ultimate Space Encyclopedia: all missions, planets, cosmic mysteries, Black & White Holes, myths, and Do You Know facts.</p>
+  <div class="didyouknow">DO YOU KNOW? Every atom in your body was forged inside a star.</div>
+</section>
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <small>02 / ABOUT</small>
+  <h2>About VOID ATLAS</h2>
+  <p>VOID ATLAS is a high-end interactive encyclopedia for space knowledge with tech + space style UI, infinite scroll, and smooth animations.</p>
+</section>
+<div class="divider"></div>
+
+<!-- NASA MISSIONS -->
+<section id="nasa" class="section">
+  <small>03 / NASA MISSIONS</small>
+  <h2>NASA Missions</h2>
+  <div class="timeline">
+    <div class="event"><span>1961</span><h4>Mercury Program</h4><p>First US human spaceflight program.</p></div>
+    <div class="event"><span>1969</span><h4>Apollo 11</h4><p>First Moon landing.</p></div>
+    <div class="event"><span>1990</span><h4>Hubble Telescope</h4><p>Revolutionized astronomy with deep space images.</p></div>
+    <div class="event"><span>2021</span><h4>James Webb Telescope</h4><p>Advanced infrared observatory.</p></div>
   </div>
 </section>
-
 <div class="divider"></div>
 
-<section id="isro" class="section">
-  <small>02 / ISRO</small>
-  <h2>Indian Space Research Organisation</h2>
-  <p>
-    ISRO represents cost-efficient engineering excellence, achieving
-    interplanetary missions with minimal budgets.
-  </p>
-</section>
-
-<div class="divider"></div>
-
+<!-- APOLLO MISSIONS -->
 <section id="apollo" class="section">
-  <small>03 / APOLLO TIMELINE</small>
+  <small>04 / APOLLO MISSIONS</small>
   <h2>Apollo Missions</h2>
-
   <div class="timeline">
-    <div class="event">
-      <span>1969</span>
-      <h4>Apollo 11</h4>
-      <p>First human landing on the Moon.</p>
-    </div>
-    <div class="event">
-      <span>1971</span>
-      <h4>Apollo 15</h4>
-      <p>Extended lunar surface exploration.</p>
-    </div>
-    <div class="event">
-      <span>1972</span>
-      <h4>Apollo 17</h4>
-      <p>Last crewed lunar mission.</p>
-    </div>
+    <div class="event"><span>1969</span><h4>Apollo 11</h4><p>Neil Armstrong and Buzz Aldrin land on the Moon.</p></div>
+    <div class="event"><span>1971</span><h4>Apollo 15</h4><p>Extended lunar surface exploration.</p></div>
+    <div class="event"><span>1972</span><h4>Apollo 17</h4><p>Last crewed lunar mission.</p></div>
   </div>
 </section>
-
 <div class="divider"></div>
 
-<section id="chandra" class="section">
-  <small>04 / CHANDRAYAAN</small>
-  <h2>Chandrayaan Missions</h2>
-
+<!-- ISRO MISSIONS -->
+<section id="isro" class="section">
+  <small>05 / ISRO MISSIONS</small>
+  <h2>ISRO Major Missions</h2>
   <div class="timeline">
-    <div class="event">
-      <span>2008</span>
-      <h4>Chandrayaan-1</h4>
-      <p>Confirmed water molecules on Moon.</p>
-    </div>
-    <div class="event">
-      <span>2019</span>
-      <h4>Chandrayaan-2</h4>
-      <p>Orbiter success, lander partial failure.</p>
-    </div>
-    <div class="event">
-      <span>2023</span>
-      <h4>Chandrayaan-3</h4>
-      <p>First soft landing near lunar south pole.</p>
-    </div>
+    <div class="event"><span>1980</span><h4>SLV-3</h4><p>First launch vehicle to place satellite in orbit.</p></div>
+    <div class="event"><span>2008</span><h4>Chandrayaan-1</h4><p>Lunar orbiter confirmed water molecules.</p></div>
+    <div class="event"><span>2013</span><h4>Mangalyaan</h4><p>First Indian Mars orbiter mission.</p></div>
   </div>
 </section>
+<div class="divider"></div>
 
-<div id="loader">LOADING MORE DATA…</div>
+<!-- CHANDRAYAAN & MANGALYAAN -->
+<section id="chandrayaan" class="section">
+  <small>06 / CHANDRAYAAN & MANGALYAAN</small>
+  <h2>Indian Spacecraft Overview</h2>
+  <div class="data">Chandrayaan-1: Lunar orbiter<br>Chandrayaan-2: Orbiter + Lander + Rover<br>Mangalyaan: Mars Orbiter Mission</div>
+  <div class="didyouknow">DO YOU KNOW? Mangalyaan reached Mars orbit in first attempt, rare in space history.</div>
+</section>
+<div class="divider"></div>
+
+<!-- STRUCTURES -->
+<section id="structures" class="section">
+  <small>07 / STRUCTURES</small>
+  <h2>Spacecraft Structures</h2>
+  <div class="timeline">
+    <div class="event"><span>Chandrayaan</span><h4>Orbiter + Lander</h4><p>Each module carries instruments for lunar exploration.</p></div>
+    <div class="event"><span>Apollo</span><h4>Command Module + Lunar Module</h4><p>Command Module for crew, Lunar Module for Moon landing.</p></div>
+    <div class="event"><span>Mangalyaan</span><h4>Orbiter</h4><p>Lightweight structure with cameras and sensors.</p></div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- MYTH VS SCIENCE -->
+<section id="mythscience" class="section">
+  <small>08 / MYTH VS SCIENCE</small>
+  <h2>Myth vs Science</h2>
+  <div class="grid">
+    <div><h4>Greek Myth</h4><p>Planet names based on gods.</p></div>
+    <div><h4>Scientific Fact</h4><p>Planets follow Kepler's laws of planetary motion.</p></div>
+    <div><h4>Vedic Myth</h4><p>Sun as Surya, Moon as Chandra.</p></div>
+    <div><h4>Scientific Fact</h4><p>Sun is a star, Moon is a natural satellite.</p></div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- BLACK & WHITE HOLES -->
+<section id="blackholes" class="section">
+  <small>09 / BLACK & WHITE HOLES</small>
+  <h2>Black Holes & White Holes</h2>
+  <p>Black holes: Regions of infinite gravity. White holes: theoretical opposites.</p>
+  <div class="data">
+    Types: Stellar, Supermassive, Primordial<br>
+    Event Horizon: Point of no return<br>
+    Time Dilation: Gravity slows time<br>
+    White holes: Not yet observed
+  </div>
+  <div class="didyouknow">DO YOU KNOW? Time near black holes moves slower compared to Earth.</div>
+</section>
+<div class="divider"></div>
+
+<!-- PLANETS -->
+<section id="planets" class="section">
+  <small>10 / PLANETS</small>
+  <h2>Planets of Our Solar System</h2>
+  <div class="table">
+    <div><b>Mercury</b><span>Closest to Sun, extreme temperatures</span></div>
+    <div><b>Venus</b><span>Runaway greenhouse effect</span></div>
+    <div><b>Earth</b><span>Liquid water and life</span></div>
+    <div><b>Mars</b><span>Red planet, ancient riverbeds</span></div>
+    <div><b>Jupiter</b><span>Gas giant, Great Red Spot</span></div>
+    <div><b>Saturn</b><span>Ring system</span></div>
+    <div><b>Uranus</b><span>Rotates on its side</span></div>
+    <div><b>Neptune</b><span>Fastest winds in Solar System</span></div>
+  </div>
+  <div class="didyouknow">DO YOU KNOW? Jupiter protects inner planets by absorbing asteroids.</div>
+</section>
 
 </main>
 </div>
 
 <script>
-/* ======================================================
-   STARFIELD
-====================================================== */
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-let w,h,stars=[];
-function resize(){
-  w=canvas.width=window.innerWidth;
-  h=canvas.height=window.innerHeight;
-}
-window.addEventListener("resize",resize);
+// ================= STARFIELD =================
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let w, h, stars = [];
+function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
+window.addEventListener("resize", resize);
 resize();
-
-for(let i=0;i<400;i++){
-  stars.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*w});
-}
-
+for(let i=0;i<500;i++) stars.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*w});
 function animate(){
-  ctx.fillStyle="rgba(2,3,10,.4)";
+  ctx.fillStyle="rgba(2,3,10,.45)";
   ctx.fillRect(0,0,w,h);
   ctx.fillStyle="#fff";
   stars.forEach(s=>{
-    s.z-=2;
-    if(s.z<=0)s.z=w;
-    let x=(s.x-w/2)*(w/s.z)+w/2;
-    let y=(s.y-h/2)*(w/s.z)+h/2;
-    ctx.fillRect(x,y,1,1);
+    s.z-=2;if(s.z<=0)s.z=w;
+    let X=(s.x-w/2)*(w/s.z)+w/2, Y=(s.y-h/2)*(w/s.z)+h/2;
+    ctx.fillRect(X,Y,1,1);
   });
   requestAnimationFrame(animate);
 }
 animate();
 
-/* ======================================================
-   SECTION ANIMATIONS
-====================================================== */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add("visible");
-  });
+// ================= SECTION REVEAL =================
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});
 },{threshold:.15});
-
 document.querySelectorAll(".section").forEach(s=>observer.observe(s));
-</script>
 
+// ================= HAMBURGER MENU =================
+const hamburger = document.getElementById("hamburger");
+const sidebar = document.getElementById("sidebar");
+hamburger.addEventListener("click",()=>{
+  sidebar.classList.toggle("collapsed");
+});
+</script>
 </body>
 </html>
