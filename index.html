@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOID ATLAS — Mapping the Infinite</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050608;
+  --panel:#0b1224;
+  --text:#eef1f6;
+  --muted:#9aa3b2;
+  --blue:#4da3ff;
+  --violet:#7b61ff;
+  --border:rgba(255,255,255,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:radial-gradient(circle at top,#0c1325,var(--bg));
+  color:var(--text);
+  font-family:Inter,sans-serif;
+  line-height:1.7;
+}
+section{padding:120px 8vw}
+h1,h2,h3{
+  font-family:"Space Grotesk";
+  letter-spacing:.04em;
+}
+h1{font-size:clamp(3.5rem,8vw,6rem)}
+h2{font-size:2.6rem;margin-bottom:20px}
+h3{font-size:1.3rem;margin-bottom:10px}
+p{color:var(--muted);max-width:1000px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:32px;
+  margin-top:50px;
+}
+.card{
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--border);
+  padding:30px;
+}
+.card:hover{
+  border-color:var(--blue);
+  box-shadow:0 0 25px rgba(77,163,255,.18);
+}
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero p{margin:30px auto;font-size:1.1rem}
+.divider{
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+  margin:80px 0;
+}
+footer{
+  padding:60px;
+  border-top:1px solid var(--border);
+  text-align:center;
+  font-size:.85rem;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>VOID ATLAS</h1>
+    <p>
+      Mapping the infinite universe — from invisible cosmic gas  
+      to humanity’s greatest space missions.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <h2>What is Void Atlas?</h2>
+  <p>
+    Void Atlas is a long-form space intelligence platform built to explain
+    the universe clearly, seriously, and without noise.
+    It combines scientific reality, space missions, and human curiosity
+    into a single navigable experience.
+  </p>
+</section>
+
+<!-- SPACE REALITY -->
+<section style="background:var(--panel)">
+  <h2>Space Is Not Empty</h2>
+  <p>
+    Contrary to popular belief, space is filled with gas, radiation,
+    magnetic fields, and microscopic particles.
+  </p>
+
+  <div class="grid">
+    <div class="card"><h3>Interstellar Gas</h3><p>Mostly hydrogen and helium spread across galaxies.</p></div>
+    <div class="card"><h3>Cosmic Dust</h3><p>Tiny solid particles forming stars and planets.</p></div>
+    <div class="card"><h3>Radiation</h3><p>Energy from stars, supernovae, and the Big Bang.</p></div>
+    <div class="card"><h3>Dark Matter</h3><p>Invisible matter shaping galaxies through gravity.</p></div>
+  </div>
+</section>
+
+<!-- DO YOU KNOW -->
+<section>
+  <h2>Do You Know?</h2>
+  <div class="grid">
+    <div class="card"><p>A day on Venus is longer than its year.</p></div>
+    <div class="card"><p>Neutron stars are so dense that a spoonful weighs billions of tons.</p></div>
+    <div class="card"><p>Space has a temperature of about −270°C.</p></div>
+    <div class="card"><p>Most atoms in your body were formed inside stars.</p></div>
+    <div class="card"><p>The Milky Way will collide with Andromeda.</p></div>
+    <div class="card"><p>Black holes bend time itself.</p></div>
+  </div>
+</section>
+
+<!-- ISRO -->
+<section style="background:var(--panel)">
+  <h2>ISRO — India’s Space Program</h2>
+  <p>
+    The Indian Space Research Organisation (ISRO) is known for
+    cost-efficient and precise missions.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Chandrayaan-1</h3>
+      <p>Confirmed presence of water molecules on the Moon.</p>
+    </div>
+    <div class="card">
+      <h3>Chandrayaan-2</h3>
+      <p>Orbiter continues sending high-resolution lunar data.</p>
+    </div>
+    <div class="card">
+      <h3>Chandrayaan-3</h3>
+      <p>India became the first nation to land near the lunar south pole.</p>
+    </div>
+    <div class="card">
+      <h3>Mangalyaan</h3>
+      <p>India’s first Mars mission with record-low budget.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NASA -->
+<section>
+  <h2>NASA — Pioneering Deep Space</h2>
+  <p>
+    NASA has led human and robotic exploration beyond Earth for decades.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Apollo Program</h3>
+      <p>First humans walked on the Moon in 1969.</p>
+    </div>
+    <div class="card">
+      <h3>Voyager</h3>
+      <p>Farthest human-made objects, now in interstellar space.</p>
+    </div>
+    <div class="card">
+      <h3>James Webb Telescope</h3>
+      <p>Studying early galaxies and exoplanet atmospheres.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MOON & MARS -->
+<section style="background:var(--panel)">
+  <h2>Moon & Mars Missions</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Apollo Moon Landings</h3>
+      <p>Six successful crewed landings between 1969–1972.</p>
+    </div>
+    <div class="card">
+      <h3>Artemis Program</h3>
+      <p>NASA’s plan to return humans to the Moon.</p>
+    </div>
+    <div class="card">
+      <h3>Mars Rovers</h3>
+      <p>Curiosity and Perseverance exploring Martian geology.</p>
+    </div>
+    <div class="card">
+      <h3>Future Mars Plans</h3>
+      <p>Human missions planned in coming decades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section>
+  <h2>Why Space Matters</h2>
+  <p>
+    Space exploration is not about escape.
+    It is about understanding our origin, limits, and future.
+  </p>
+</section>
+
+<section>
+  <h2 style="text-align:center;opacity:.85">
+    The universe does not owe us answers.  
+    Exploration is how we earn them.
+  </h2>
+</section>
+
+<footer>
+© 2026 VOID ATLAS · Mapping the Infinite
+</footer>
+
+</body>
+</html>
