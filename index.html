@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VOID ATLAS — Mapping the Infinite</title>
+<title>VOID ATLAS — Mount Olympus Edition</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -14,7 +14,6 @@
   --text:#eef1f6;
   --muted:#9aa3b2;
   --blue:#4da3ff;
-  --violet:#7b61ff;
   --border:rgba(255,255,255,0.08);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -22,47 +21,25 @@ body{
   background:radial-gradient(circle at top,#0c1325,var(--bg));
   color:var(--text);
   font-family:Inter,sans-serif;
-  line-height:1.7;
+  line-height:1.85;
 }
-section{padding:120px 8vw}
+section{padding:130px 8vw}
 h1,h2,h3{
   font-family:"Space Grotesk";
   letter-spacing:.04em;
 }
-h1{font-size:clamp(3.5rem,8vw,6rem)}
-h2{font-size:2.6rem;margin-bottom:20px}
-h3{font-size:1.3rem;margin-bottom:10px}
-p{color:var(--muted);max-width:1000px}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:32px;
-  margin-top:50px;
-}
-.card{
-  background:rgba(255,255,255,.02);
-  border:1px solid var(--border);
-  padding:30px;
-}
-.card:hover{
-  border-color:var(--blue);
-  box-shadow:0 0 25px rgba(77,163,255,.18);
-}
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-.hero p{margin:30px auto;font-size:1.1rem}
+h1{font-size:clamp(3.8rem,9vw,6.5rem)}
+h2{font-size:2.8rem;margin-bottom:25px}
+h3{font-size:1.45rem;margin-bottom:12px}
+p{color:var(--muted);max-width:1100px}
+.panel{background:var(--panel)}
 .divider{
   height:1px;
   background:linear-gradient(to right,transparent,var(--border),transparent);
-  margin:80px 0;
+  margin:120px 0;
 }
 footer{
-  padding:60px;
+  padding:70px;
   border-top:1px solid var(--border);
   text-align:center;
   font-size:.85rem;
@@ -74,149 +51,191 @@ footer{
 <body>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" style="min-height:100vh;display:flex;align-items:center;text-align:center;justify-content:center">
   <div>
     <h1>VOID ATLAS</h1>
     <p>
-      Mapping the infinite universe — from invisible cosmic gas  
-      to humanity’s greatest space missions.
+      A deep cartography of the universe —  
+      its structure, its missions, and humanity’s longest journey upward.
     </p>
   </div>
 </section>
 
+<div class="divider"></div>
+
 <!-- ABOUT -->
 <section>
-  <h2>What is Void Atlas?</h2>
+  <h2>About Void Atlas</h2>
   <p>
-    Void Atlas is a long-form space intelligence platform built to explain
-    the universe clearly, seriously, and without noise.
-    It combines scientific reality, space missions, and human curiosity
-    into a single navigable experience.
+    Void Atlas is not a news site, not a blog, and not a textbook.
+    It is a long-form space intelligence platform designed to document
+    humanity’s relationship with the universe in depth.
+  </p>
+  <p>
+    From the invisible gas between stars to the boots that touched the Moon,
+    Void Atlas exists to explain space as it truly is — vast, hostile,
+    beautiful, and largely unexplored.
   </p>
 </section>
+
+<div class="divider"></div>
 
 <!-- SPACE REALITY -->
-<section style="background:var(--panel)">
+<section class="panel">
   <h2>Space Is Not Empty</h2>
   <p>
-    Contrary to popular belief, space is filled with gas, radiation,
-    magnetic fields, and microscopic particles.
+    The word “vacuum” often misleads people into believing space is nothingness.
+    In reality, space contains matter, energy, radiation, magnetic fields,
+    and fundamental forces operating at cosmic scales.
+  </p>
+  <p>
+    Interstellar space is filled with hydrogen gas, cosmic dust,
+    and energetic particles traveling near the speed of light.
+    Even the most empty regions of the universe are not truly empty.
   </p>
 
-  <div class="grid">
-    <div class="card"><h3>Interstellar Gas</h3><p>Mostly hydrogen and helium spread across galaxies.</p></div>
-    <div class="card"><h3>Cosmic Dust</h3><p>Tiny solid particles forming stars and planets.</p></div>
-    <div class="card"><h3>Radiation</h3><p>Energy from stars, supernovae, and the Big Bang.</p></div>
-    <div class="card"><h3>Dark Matter</h3><p>Invisible matter shaping galaxies through gravity.</p></div>
-  </div>
+  <h3>Interstellar Gas</h3>
+  <p>
+    Hydrogen and helium dominate the universe.
+    Massive clouds of these gases collapse under gravity to form stars.
+    Without gas, there would be no galaxies, no planets, and no life.
+  </p>
+
+  <h3>Radiation & Background Energy</h3>
+  <p>
+    The Cosmic Microwave Background is leftover radiation from the Big Bang,
+    still detectable today.
+    It defines the base temperature of the universe at approximately 2.7 Kelvin.
+  </p>
 </section>
 
-<!-- DO YOU KNOW -->
+<div class="divider"></div>
+
+<!-- GK -->
 <section>
-  <h2>Do You Know?</h2>
-  <div class="grid">
-    <div class="card"><p>A day on Venus is longer than its year.</p></div>
-    <div class="card"><p>Neutron stars are so dense that a spoonful weighs billions of tons.</p></div>
-    <div class="card"><p>Space has a temperature of about −270°C.</p></div>
-    <div class="card"><p>Most atoms in your body were formed inside stars.</p></div>
-    <div class="card"><p>The Milky Way will collide with Andromeda.</p></div>
-    <div class="card"><p>Black holes bend time itself.</p></div>
-  </div>
+  <h2>Do You Know? — Cosmic Reality</h2>
+
+  <p>• A single day on Venus is longer than a year on Venus.</p>
+  <p>• The Milky Way contains over 100 billion stars.</p>
+  <p>• Light from the Sun takes 8 minutes to reach Earth.</p>
+  <p>• Neutron stars can spin hundreds of times per second.</p>
+  <p>• The universe is expanding faster every second.</p>
+  <p>• More than 95% of the universe is invisible to us.</p>
 </section>
+
+<div class="divider"></div>
 
 <!-- ISRO -->
-<section style="background:var(--panel)">
-  <h2>ISRO — India’s Space Program</h2>
+<section class="panel">
+  <h2>ISRO — India’s Space Journey</h2>
   <p>
-    The Indian Space Research Organisation (ISRO) is known for
-    cost-efficient and precise missions.
+    The Indian Space Research Organisation (ISRO) represents one of the most
+    cost-effective and precise space programs in the world.
+    With limited budgets, ISRO has achieved missions that rival global agencies.
   </p>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Chandrayaan-1</h3>
-      <p>Confirmed presence of water molecules on the Moon.</p>
-    </div>
-    <div class="card">
-      <h3>Chandrayaan-2</h3>
-      <p>Orbiter continues sending high-resolution lunar data.</p>
-    </div>
-    <div class="card">
-      <h3>Chandrayaan-3</h3>
-      <p>India became the first nation to land near the lunar south pole.</p>
-    </div>
-    <div class="card">
-      <h3>Mangalyaan</h3>
-      <p>India’s first Mars mission with record-low budget.</p>
-    </div>
-  </div>
+  <h3>Chandrayaan-1</h3>
+  <p>
+    Launched in 2008, Chandrayaan-1 confirmed the presence of water molecules
+    on the Moon. This discovery reshaped lunar science and future exploration.
+  </p>
+
+  <h3>Chandrayaan-2</h3>
+  <p>
+    Although the lander failed during descent, the orbiter continues to operate,
+    delivering high-resolution lunar data and mapping resources.
+  </p>
+
+  <h3>Chandrayaan-3</h3>
+  <p>
+    In 2023, India became the first nation to land near the Moon’s south pole —
+    a region critical for future human missions due to potential water ice.
+  </p>
+
+  <h3>Mangalyaan (Mars Orbiter Mission)</h3>
+  <p>
+    India reached Mars on its first attempt, demonstrating advanced navigation,
+    communication, and deep-space engineering capabilities.
+  </p>
 </section>
+
+<div class="divider"></div>
 
 <!-- NASA -->
 <section>
-  <h2>NASA — Pioneering Deep Space</h2>
+  <h2>NASA — Humanity Beyond Earth</h2>
   <p>
-    NASA has led human and robotic exploration beyond Earth for decades.
+    NASA has driven space exploration from the early Cold War era
+    to modern deep-space telescopes and interplanetary rovers.
   </p>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Apollo Program</h3>
-      <p>First humans walked on the Moon in 1969.</p>
-    </div>
-    <div class="card">
-      <h3>Voyager</h3>
-      <p>Farthest human-made objects, now in interstellar space.</p>
-    </div>
-    <div class="card">
-      <h3>James Webb Telescope</h3>
-      <p>Studying early galaxies and exoplanet atmospheres.</p>
-    </div>
-  </div>
+  <h3>Apollo Program</h3>
+  <p>
+    Between 1969 and 1972, NASA landed humans on the Moon six times.
+    Apollo missions proved that humans could survive, work,
+    and return from another celestial body.
+  </p>
+
+  <h3>Why Apollo Still Matters</h3>
+  <p>
+    Apollo was not just a political victory.
+    It was an engineering miracle achieved with computers weaker
+    than today’s smartphones.
+  </p>
 </section>
 
-<!-- MOON & MARS -->
-<section style="background:var(--panel)">
-  <h2>Moon & Mars Missions</h2>
+<div class="divider"></div>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Apollo Moon Landings</h3>
-      <p>Six successful crewed landings between 1969–1972.</p>
-    </div>
-    <div class="card">
-      <h3>Artemis Program</h3>
-      <p>NASA’s plan to return humans to the Moon.</p>
-    </div>
-    <div class="card">
-      <h3>Mars Rovers</h3>
-      <p>Curiosity and Perseverance exploring Martian geology.</p>
-    </div>
-    <div class="card">
-      <h3>Future Mars Plans</h3>
-      <p>Human missions planned in coming decades.</p>
-    </div>
-  </div>
+<!-- MOON -->
+<section class="panel">
+  <h2>Moon Missions — Global Effort</h2>
+  <p>
+    The Moon remains humanity’s primary testing ground for deep-space exploration.
+  </p>
+
+  <p>
+    Countries across the world now view the Moon as a gateway —
+    not a destination, but a stepping stone toward Mars and beyond.
+  </p>
 </section>
+
+<div class="divider"></div>
+
+<!-- MARS -->
+<section>
+  <h2>Mars — The Next Frontier</h2>
+  <p>
+    Mars is the most Earth-like planet in the solar system,
+    yet it is hostile, cold, and radiation-filled.
+  </p>
+
+  <h3>Why Mars?</h3>
+  <p>
+    Mars once had water, rivers, and possibly life.
+    Studying Mars helps answer one question:
+    Was Earth ever unique?
+  </p>
+
+  <h3>Mount Olympus</h3>
+  <p>
+    Mount Olympus is the tallest volcano in the solar system,
+    standing nearly 22 kilometers high —
+    almost three times taller than Mount Everest.
+  </p>
+</section>
+
+<div class="divider"></div>
 
 <!-- PHILOSOPHY -->
 <section>
-  <h2>Why Space Matters</h2>
-  <p>
-    Space exploration is not about escape.
-    It is about understanding our origin, limits, and future.
-  </p>
-</section>
-
-<section>
-  <h2 style="text-align:center;opacity:.85">
-    The universe does not owe us answers.  
-    Exploration is how we earn them.
+  <h2 style="text-align:center;opacity:.9">
+    We explore space not because it is easy,  
+    but because ignorance is heavier than gravity.
   </h2>
 </section>
 
 <footer>
-© 2026 VOID ATLAS · Mapping the Infinite
+© 2026 VOID ATLAS — Mount Olympus Edition
 </footer>
 
 </body>
