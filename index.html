@@ -3,274 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VoidAtlas — Complete professional space encyclopedia: history, missions, organizations, rockets, planets, black holes" />
-  <meta name="keywords" content="space encyclopedia, NASA, ISRO, SpaceX, planets, black holes, rockets" />
   <title>VoidAtlas — Space Encyclopedia</title>
-
-  <!-- Premium fonts for professional look -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* Root variables for consistent theme */
-    :root {
-      --bg: #05070f;
-      --surface: #0f172a;
-      --accent: #60a5fa;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --border: #1e293b;
-      --glow: 0 0 24px rgba(96,165,250,0.12);
-      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Global reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* Subtle galaxy background layer */
-    #galaxy {
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(circle at 40% 30%, rgba(96,165,250,0.06) 0%, transparent 70%),
-        radial-gradient(circle at 70% 60%, rgba(139,92,246,0.05) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    .stars {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(white 1px, transparent 1px);
-      background-size: 80px 80px, 60px 60px;
-      background-position: 0 0, 40px 40px;
-      opacity: 0.25;
-      animation: drift 180s linear infinite;
-    }
-
-    @keyframes drift {
-      from { background-position: 0 0, 40px 40px; }
-      to   { background-position: 3000px 3000px, 3040px 3040px; }
-    }
-
-    /* Header - fixed top bar */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(5,7,15,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      transition: var(--transition);
-    }
-
-    nav {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 1.4rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -1px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 3.2rem;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.4s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--text);
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 2.2rem;
-      color: var(--accent);
-      cursor: pointer;
-    }
-
-    /* Main content container */
-    main {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding-top: 140px;
-    }
-
-    section {
-      padding: 140px 5%;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1.2s ease;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h1 {
-      font-size: 5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    h2 {
-      font-size: 3.2rem;
-      color: var(--accent);
-      margin: 4rem 0 2rem;
-    }
-
-    h3 {
-      font-size: 2.2rem;
-      margin: 2.5rem 0 1.5rem;
-    }
-
-    p {
-      max-width: 900px;
-      margin: 0 auto 2rem;
-      font-size: 1.25rem;
-      color: var(--muted);
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3.5rem;
-      margin: 4rem auto;
-      max-width: 1100px;
-      box-shadow: var(--glow);
-      transition: transform 0.5s;
-    }
-
-    .card:hover {
-      transform: translateY(-12px);
-    }
-
-    img {
-      width: 100%;
-      max-width: 900px;
-      border-radius: 12px;
-      margin: 2.5rem auto;
-      display: block;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    }
-
-    .timeline-item {
-      background: rgba(15,23,42,0.5);
-      padding: 1.8rem;
-      border-left: 4px solid var(--accent);
-      margin-bottom: 2rem;
-      border-radius: 8px;
-    }
-
-    .planets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3.5rem;
-      margin: 4rem auto;
-    }
-
-    .planet-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem;
-      transition: transform 0.5s;
-    }
-
-    .planet-card:hover {
-      transform: translateY(-12px);
-    }
-
-    .planet-img {
-      border-radius: 50%;
-      max-width: 280px;
-      margin: 0 auto 1.5rem;
-    }
-
-    .myth-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 3.5rem;
-      margin: 4rem auto;
-    }
-
-    .myth-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.8rem;
-    }
-
-    #dyk-text {
-      font-size: 2.6rem;
-      color: var(--text);
-      min-height: 160px;
-      margin: 4rem 0;
-      transition: opacity 1.2s;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-      h1 { font-size: 4.5rem; }
-      h2 { font-size: 3rem; }
-    }
-
-    @media (max-width: 768px) {
-      .hamburger { display: block; }
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background: var(--bg);
-        padding: 2rem;
-        display: none;
-        gap: 2.5rem;
-      }
-      .nav-links.active { display: flex; }
-      section { padding: 100px 5%; }
-      .card { padding: 2.5rem; }
-    }
-  </style>
+  <meta name="description" content="Complete professional space encyclopedia" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div id="galaxy">
     <div class="stars"></div>
   </div>
@@ -285,6 +22,7 @@
         <a href="#isro">ISRO</a>
         <a href="#spacex">SpaceX</a>
         <a href="#rockets">Rockets</a>
+        <a href="#apollo">Apollo</a>
         <a href="#planets">Planets</a>
         <a href="#blackholes">Black Holes</a>
         <a href="#myths">Myths</a>
@@ -295,228 +33,88 @@
 
   <main>
     <section id="history">
-      <h1>History of Space Exploration</h1>
+      <h1>History of Space</h1>
       <div class="card">
-        <h2>1940s–1950s: Dawn of the Space Age</h2>
-        <p>V-2 rocket (1944, Germany) — first object to reach space • Sputnik 1 (1957, USSR) — first artificial satellite • Explorer 1 (1958, USA) — first US satellite</p>
-
-        <h2>1960s: Race to the Moon</h2>
-        <p>Yuri Gagarin (1961) — first human in space • John Glenn (1962) — first American orbital flight • Apollo 11 (1969) — first Moon landing (Armstrong & Aldrin)</p>
-
-        <h2>1970s–1980s: Space Stations & Probes</h2>
-        <p>Skylab (1973) — first US station • Salyut & Mir (USSR) — long-duration stations • Voyager 1 & 2 (1977) — interstellar probes • Space Shuttle era begins (1981)</p>
-
-        <h2>1990s–2000s: International Cooperation</h2>
-        <p>Hubble Space Telescope (1990) — revolutionized astronomy • ISS construction (1998–present) • Mars rovers (Spirit/Opportunity 2004, Curiosity 2012)</p>
-
-        <h2>2010s–2020s: Commercial & Deep Space</h2>
-        <p>SpaceX Falcon 9 reusability (2015) • JWST launch (2021) • Chandrayaan-3 (2023) — first lunar south pole landing • Artemis program • Starship development</p>
+        <h2>1940s–1950s</h2>
+        <p>V-2 • Sputnik • Explorer</p>
+        <h2>1960s</h2>
+        <p>Gagarin • Apollo 11 (Armstrong)</p>
+        <h2>1970s–Now</h2>
+        <p>Voyager • Hubble • ISS • JWST • Chandrayaan-3</p>
       </div>
     </section>
 
-    <section id="nasa">
-      <h2>NASA (National Aeronautics and Space Administration)</h2>
+    <section id="apollo">
+      <h2>Apollo</h2>
       <div class="card">
-        <h3>Founded</h3>
-        <p>July 29, 1958 — in response to the Soviet Sputnik launch</p>
-
-        <h3>Primary Mission</h3>
-        <p>Advance space science, Earth observation, aeronautics, and human exploration</p>
-
-        <h3>Flagship Programs</h3>
-        <p>Apollo (Moon landings) • Voyager (interstellar) • Hubble (deep space) • Mars rovers • James Webb Space Telescope • Artemis (lunar return & Mars prep)</p>
-
-        <h3>Current Priorities (2026)</h3>
-        <p>Artemis III (human Moon landing) • Mars Sample Return • Deep space infrastructure</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Apollo_Command_Service_Module_diagram.png" alt="Apollo">
+        <p>Neil Armstrong: "One small step..."</p>
       </div>
     </section>
 
     <section id="isro">
-      <h2>ISRO (Indian Space Research Organisation)</h2>
+      <h2>ISRO</h2>
       <div class="card">
-        <h3>Founded</h3>
-        <p>August 15, 1969 (evolved from INCOSPAR 1962)</p>
-
-        <h3>Primary Mission</h3>
-        <p>Harness space technology for national development (communication, navigation, disaster management, agriculture)</p>
-
-        <h3>Key Achievements</h3>
-        <p>Chandrayaan-1 (2008) — discovered water on Moon • Mangalyaan (2013) — first Mars orbit on first attempt • Chandrayaan-3 (2023) — first south pole soft landing</p>
-
-        <h3>Future Plans</h3>
-        <p>Gaganyaan (human spaceflight) • Aditya-L1 (solar observatory) • Indian space station by 2035</p>
-      </div>
-    </section>
-
-    <section id="spacex">
-      <h2>SpaceX</h2>
-      <div class="card">
-        <h3>Founded</h3>
-        <p>May 6, 2002 by Elon Musk</p>
-
-        <h3>Primary Mission</h3>
-        <p>Reduce space transportation costs and enable human settlement on Mars</p>
-
-        <h3>Major Milestones</h3>
-        <p>First private company to send spacecraft to ISS (Dragon 2012) • Falcon 9 reusability (2015) • Starlink (global internet constellation) • Crew Dragon (NASA crewed flights)</p>
-
-        <h3>Future Vision</h3>
-        <p>Starship — fully reusable vehicle for Moon, Mars, point-to-point Earth travel</p>
-      </div>
-    </section>
-
-    <section id="rockets">
-      <h2>Rockets & Launch Vehicles</h2>
-      <div class="card">
-        <h3>Saturn V (NASA, 1967–1973)</h3>
-        <p>Tallest & most powerful rocket ever • Used for Apollo Moon missions • Payload to LEO: 140 t • Thrust: 34 MN</p>
-
-        <h3>Falcon 9 (SpaceX, 2010–present)</h3>
-        <p>Reusable first stage • Over 300 successful launches • Payload to LEO: 22.8 t • Cost per launch: ~$67M</p>
-
-        <h3>LVM3 / GSLV Mk III (ISRO, 2017–present)</h3>
-        <p>India's heaviest operational rocket • Payload to GTO: 4 t • Used for Chandrayaan-3 & future Gaganyaan</p>
-
-        <h3>Starship (SpaceX, in development)</h3>
-        <p>Fully reusable super-heavy • Target payload to LEO: 100–150 t • Designed for Mars colonization & lunar landings</p>
+        <p>Chandrayaan-1: Water on Moon</p>
+        <p>Mangalyaan: Mars on first try</p>
+        <p>Chandrayaan-3: South pole landing</p>
       </div>
     </section>
 
     <section id="planets">
-      <h2>Solar System Planets</h2>
+      <h2>Planets</h2>
       <div class="planets-grid">
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Mercury_in_color_-_Prockter07-edit1.jpg" alt="Mercury" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Mercury_in_color_-_Prockter07-edit1.jpg" alt="Mercury">
           <h3>Mercury</h3>
-          <p>Smallest planet • Closest to Sun • No atmosphere • Extreme temperature swings (-173°C to 427°C)</p>
         </div>
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Venus_globe.jpg" alt="Venus" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Venus_globe.jpg" alt="Venus">
           <h3>Venus</h3>
-          <p>Hottest planet (462°C) • Thick CO₂ atmosphere • Runaway greenhouse effect • Slow retrograde rotation</p>
         </div>
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Full_blue_marble.jpg" alt="Earth" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Full_blue_marble.jpg" alt="Earth">
           <h3>Earth</h3>
-          <p>Only known life-bearing planet • 71% water • Protective magnetic field & ozone layer</p>
         </div>
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars">
           <h3>Mars</h3>
-          <p>Red planet • Evidence of ancient water • Largest volcano (Olympus Mons) • Two moons</p>
         </div>
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Jupiter_and_its_shrunken_Great_Red_Spot.jpg" alt="Jupiter" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Jupiter_and_its_shrunken_Great_Red_Spot.jpg" alt="Jupiter">
           <h3>Jupiter</h3>
-          <p>Largest planet • Gas giant • Great Red Spot storm • 95+ moons</p>
         </div>
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_from_Cassini_Orbiter_%282004-10-06%29.jpg" alt="Saturn" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_from_Cassini_Orbiter_%282004-10-06%29.jpg" alt="Saturn">
           <h3>Saturn</h3>
-          <p>Iconic ring system • Gas giant • Least dense planet • 146+ moons</p>
         </div>
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus_Voyager2_color_calibrated_2019.png" alt="Uranus" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus_Voyager2_color_calibrated_2019.png" alt="Uranus">
           <h3>Uranus</h3>
-          <p>Ice giant • Extreme axial tilt (98°) • Faint rings • 27 known moons</p>
         </div>
         <div class="planet-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Neptune_Voyager2_color_calibrated_2018.png" alt="Neptune" class="planet-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Neptune_Voyager2_color_calibrated_2018.png" alt="Neptune">
           <h3>Neptune</h3>
-          <p>Ice giant • Fastest winds (2,100 km/h) • Dark spots • 14 known moons</p>
         </div>
       </div>
     </section>
 
+    <!-- Black Holes -->
     <section id="blackholes">
       <h2>Black Holes</h2>
       <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Black_hole_lensing_web.jpg" alt="Black Hole" class="diagram-img">
-        <h3>Definition</h3>
-        <p>Region of spacetime where gravity is so strong that nothing (not even light) can escape • Boundary: event horizon</p>
-
-        <h3>Types</h3>
-        <p>Stellar-mass (from massive star collapse) • Supermassive (at galaxy centers) • Primordial (theoretical)</p>
-
-        <h3>Key Concepts</h3>
-        <p>Singularity • Accretion disk • Hawking radiation • First image (2019, M87*) by Event Horizon Telescope</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Black_hole_lensing_web.jpg" alt="Black Hole">
+        <p>Gravity traps light</p>
       </div>
     </section>
 
-    <section id="myths">
-      <h2>Myth vs Science</h2>
-      <div class="myth-grid">
-        <div class="myth-card">
-          <h3>MYTH</h3>
-          <p>Great Wall of China visible from space with naked eye</p>
-          <h3>SCIENCE</h3>
-          <p>Not visible from low Earth orbit without aid</p>
-        </div>
-        <div class="myth-card">
-          <h3>MYTH</h3>
-          <p>There is zero gravity in space</p>
-          <h3>SCIENCE</h3>
-          <p>Microgravity — continuous freefall orbit</p>
-        </div>
-        <div class="myth-card">
-          <h3>MYTH</h3>
-          <p>The Sun is yellow</p>
-          <h3>SCIENCE</h3>
-          <p>Emits white light; atmosphere scatters blue wavelengths</p>
-        </div>
-        <div class="myth-card">
-          <h3>MYTH</h3>
-          <p>The Moon has a permanent dark side</p>
-          <h3>SCIENCE</h3>
-          <p>Far side is tidally locked but receives equal sunlight</p>
-        </div>
-      </div>
-    </section>
-
+    <!-- Do You Know -->
     <section id="dyk">
       <h2>Do You Know?</h2>
       <p id="dyk-text"></p>
     </section>
   </main>
 
-  <script>
-    // Dynamic Do You Know facts
-    const facts = [
-      "The Sun contains 99.86% of the Solar System's total mass.",
-      "A day on Venus is longer than its year (243 Earth days vs 225 day year).",
-      "There are more trees on Earth (~3 trillion) than stars in the Milky Way (~100–400 billion).",
-      "A teaspoon of neutron star material would weigh about 6 billion tons on Earth.",
-      "The universe is expanding, and the rate is accelerating due to dark energy.",
-      "Jupiter has at least 95 known moons.",
-      "Saturn is so low-density that it would float in water (if there was a big enough tub)."
-    ];
-
-    let current = 0;
-    const dykEl = document.getElementById('dyk-text');
-    dykEl.textContent = facts[current];
-
-    setInterval(() => {
-      dykEl.style.opacity = '0';
-      setTimeout(() => {
-        current = (current + 1) % facts.length;
-        dykEl.textContent = facts[current];
-        dykEl.style.opacity = '1';
-      }, 800);
-    }, 8000);
-
-    // Smooth section reveal on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('section').forEach(section => observer.observe(section));
-
-    // Hamburger menu toggle
-    document.querySelector('.hamburger').addEventListener('click', () => {
-      document.querySelector('.nav-links').classList.toggle('active');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
