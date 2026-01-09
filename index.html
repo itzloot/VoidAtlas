@@ -3,58 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VoidAtlas - Space Encyclopedia</title>
-  <meta name="description" content="VoidAtlas: Clean, professional space encyclopedia with missions, planets, and cosmic science." />
+  <title>VoidAtlas - Professional Space Encyclopedia</title>
+  <meta name="description" content="VoidAtlas: Clean, professional, enterprise-level space encyclopedia with missions, planets, black holes, myths, and cosmic facts." />
 
-  <!-- Professional clean font -->
+  <!-- Inter font for clean professional typography -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Additional font for variety if needed -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #000000;
-      --accent: #00aaff;              /* Clean blue-cyan accent */
-      --text: #ffffff;
-      --text-muted: #cccccc;
-      --card-bg: rgba(20, 20, 35, 0.6);
-      --border: #333344;
+      --bg: #000000;                  /* Pure black space background */
+      --accent: #00aaff;               /* Clean blue-cyan accent */
+      --text: #ffffff;                /* Primary white text */
+      --text-muted: #cccccc;          /* Muted secondary text */
+      --card-bg: rgba(20, 20, 35, 0.65); /* Subtle dark transparent card */
+      --border: #333344;              /* Subtle border color */
     }
 
+    /* Global reset and base styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.8;
       overflow-x: hidden;
     }
 
-    h1, h2, h3 { font-weight: 600; color: var(--text); }
-    h1 { font-size: 4.8rem; margin-bottom: 1.5rem; }
-    h2 { font-size: 3rem; margin-bottom: 2.5rem; color: var(--accent); }
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      color: var(--text);
+    }
 
-    /* Starfield background */
+    h1 {
+      font-size: 5.2rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 3.4rem;
+      margin-bottom: 3rem;
+      color: var(--accent);
+    }
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1.8rem;
+    }
+
+    p {
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      font-size: 1.3rem;
+      color: var(--text-muted);
+    }
+
+    /* Starfield canvas background */
     #starfield {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: -1;
       background: var(--bg);
     }
 
-    /* Fixed header */
+    /* Fixed header with professional blur */
     header {
       position: fixed;
-      top: 0; width: 100%;
-      padding: 1.8rem 5%;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(15px);
+      top: 0;
+      width: 100%;
+      padding: 2.2rem 5%;
+      background: rgba(0, 0, 0, 0.94);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       z-index: 1000;
-      transition: background 0.4s ease;
+      transition: background 0.5s ease;
     }
 
     nav {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -62,47 +94,49 @@
     }
 
     .logo {
-      font-size: 2.4rem;
+      font-size: 3rem;
       font-weight: 700;
       color: var(--accent);
     }
 
     .nav-links {
       display: flex;
-      gap: 3rem;
+      gap: 4rem;
     }
 
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
-      font-size: 1.1rem;
-      transition: color 0.4s ease;
+      font-size: 1.3rem;
+      transition: color 0.5s ease;
     }
 
-    .nav-links a:hover, .nav-links a.active {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--accent);
     }
 
     .hamburger {
       display: none;
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       color: var(--accent);
       cursor: pointer;
     }
 
+    /* Main content container */
     main {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding-top: 140px;
+      padding-top: 180px;
     }
 
     section {
-      padding: 140px 5%;
+      padding: 180px 5%;
       text-align: center;
       opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 1.2s ease, transform 1.2s ease;
+      transform: translateY(70px);
+      transition: opacity 1.8s ease, transform 1.8s ease;
     }
 
     section.visible {
@@ -110,120 +144,133 @@
       transform: translateY(0);
     }
 
-    p {
-      max-width: 900px;
-      margin: 0 auto 2.5rem;
-      font-size: 1.2rem;
-      color: var(--text-muted);
-    }
-
+    /* Card component for content blocks */
     .card {
       background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      padding: 4rem;
-      border-radius: 20px;
+      backdrop-filter: blur(18px);
+      padding: 6rem;
+      border-radius: 28px;
       border: 1px solid var(--border);
-      max-width: 1100px;
-      margin: 5rem auto;
-      transition: transform 0.6s ease;
+      max-width: 1300px;
+      margin: 7rem auto;
+      transition: transform 0.8s ease;
     }
 
     .card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-20px);
     }
 
+    /* Diagram images with smooth hover */
     .diagram-img {
       width: 100%;
-      max-width: 900px;
-      border-radius: 16px;
-      margin: 3rem 0;
-      transition: transform 0.6s ease;
+      max-width: 1100px;
+      border-radius: 24px;
+      margin: 4rem 0;
+      transition: transform 0.8s ease;
     }
 
     .diagram-img:hover {
-      transform: scale(1.02);
+      transform: scale(1.04);
     }
 
+    /* Timeline styling for missions */
     .timeline {
-      max-width: 900px;
-      margin: 4rem auto;
+      max-width: 1100px;
+      margin: 6rem auto;
       text-align: left;
     }
 
     .timeline-event {
       background: var(--card-bg);
-      padding: 2rem;
-      border-left: 4px solid var(--accent);
-      margin-bottom: 2.5rem;
-      border-radius: 12px;
-      transition: transform 0.5s ease;
+      padding: 3rem;
+      border-left: 6px solid var(--accent);
+      margin-bottom: 3.5rem;
+      border-radius: 20px;
+      transition: transform 0.7s ease;
     }
 
     .timeline-event:hover {
-      transform: translateX(10px);
+      transform: translateX(20px);
     }
 
+    /* Planets grid layout */
     .planets-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 4rem;
-      margin: 5rem auto;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 6rem;
+      margin: 7rem auto;
     }
 
     .planet-card {
       background: var(--card-bg);
-      padding: 3rem;
-      border-radius: 16px;
+      padding: 5rem;
+      border-radius: 24px;
       border: 1px solid var(--border);
-      transition: transform 0.6s ease;
+      transition: transform 0.8s ease;
     }
 
     .planet-card:hover {
-      transform: translateY(-15px);
+      transform: translateY(-25px);
     }
 
     .planet-img {
       width: 100%;
       border-radius: 50%;
-      margin-bottom: 2rem;
-      transition: transform 0.6s ease;
+      margin-bottom: 3rem;
+      transition: transform 0.8s ease;
     }
 
     .planet-card:hover .planet-img {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
 
+    /* Myth vs Science grid */
     .myth-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 4rem;
-      max-width: 1200px;
-      margin: 5rem auto;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 6rem;
+      max-width: 1500px;
+      margin: 7rem auto;
     }
 
     .myth-card {
       background: var(--card-bg);
-      padding: 3rem;
-      border-radius: 16px;
+      padding: 5rem;
+      border-radius: 24px;
       border: 1px solid var(--border);
-      transition: transform 0.6s ease;
+      transition: transform 0.8s ease;
     }
 
     .myth-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-20px);
+    }
+
+    /* Do You Know section specific styles */
+    #dyk h2 {
+      color: var(--accent);
     }
 
     #dyk-text {
-      font-size: 2.4rem;
-      color: var(--accent);
-      min-height: 140px;
-      margin: 4rem 0;
-      transition: opacity 1s ease;
+      font-size: 3rem;
+      color: var(--text);
+      min-height: 180px;
+      margin: 6rem 0;
+      transition: opacity 1.4s ease;
+    }
+
+    /* Responsive design breakpoints */
+    @media (max-width: 1400px) {
+      main { max-width: 1200px; }
+    }
+
+    @media (max-width: 1200px) {
+      h1 { font-size: 4.8rem; }
+      h2 { font-size: 3rem; }
     }
 
     @media (max-width: 992px) {
-      h1 { font-size: 4rem; }
-      h2 { font-size: 2.6rem; }
+      h1 { font-size: 4.2rem; }
+      h2 { font-size: 2.8rem; }
     }
 
     @media (max-width: 768px) {
@@ -234,15 +281,23 @@
         left: 0;
         width: 100%;
         flex-direction: column;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(15px);
-        padding: 3rem;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(25px);
+        padding: 5rem;
         display: none;
-        gap: 2rem;
+        gap: 4rem;
       }
       .nav-links.active { display: flex; }
-      section { padding: 100px 5%; }
-      .planet-card { padding: 2rem; }
+      section { padding: 120px 5%; }
+      .card { padding: 4rem; }
+      .planet-card { padding: 3rem; }
+      .myth-card { padding: 3rem; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 3.8rem; }
+      h2 { font-size: 2.6rem; }
+      .planet-img { margin-bottom: 2rem; }
     }
   </style>
 </head>
@@ -250,17 +305,18 @@
 
   <canvas id="starfield"></canvas>
 
+  <!-- Professional Header Navigation -->
   <header>
     <nav>
       <div class="logo">VoidAtlas</div>
       <div class="hamburger">☰</div>
       <div class="nav-links">
-        <a href="#intro">Intro</a>
+        <a href="#intro">Introduction</a>
         <a href="#about">About</a>
         <a href="#nasa">NASA Missions</a>
-        <a href="#apollo">Apollo</a>
+        <a href="#apollo">Apollo Program</a>
         <a href="#isro">ISRO Missions</a>
-        <a href="#planets">Planets</a>
+        <a href="#planets">Solar System</a>
         <a href="#blackholes">Black Holes</a>
         <a href="#myths">Myth vs Science</a>
         <a href="#dyk">Do You Know?</a>
@@ -269,133 +325,147 @@
   </header>
 
   <main>
+    <!-- Section 1: Introduction -->
     <section id="intro">
       <h1>VoidAtlas</h1>
-      <p>Clean Professional Space Encyclopedia</p>
-      <p>Modern, enterprise-level design with accurate space science and smooth user experience.</p>
+      <p>Professional Enterprise-Level Space Encyclopedia</p>
+      <p>Clean, modern design focused on accurate space science, exploration missions, and cosmic phenomena.</p>
+      <p>High-performance interface with smooth animations and professional typography for optimal user experience.</p>
     </section>
 
+    <!-- Section 2: About -->
     <section id="about">
       <h2>About VoidAtlas</h2>
-      <p>VoidAtlas is a professional resource delivering structured information on space exploration, planetary science, and astrophysics in a clean, modern interface optimized for clarity and performance.</p>
+      <p>VoidAtlas is a dedicated professional resource for space exploration and astrophysics information.</p>
+      <p>It features official mission timelines, high-resolution spacecraft diagrams, planetary data, black hole science, and myth debunking.</p>
+      <p>Designed with enterprise standards: clean aesthetics, responsive layout, and smooth interactions.</p>
     </section>
 
+    <!-- Section 3: NASA Missions -->
     <section id="nasa">
       <h2>NASA Missions Timeline</h2>
       <div class="card">
         <div class="timeline">
-          <div class="timeline-event"><strong>1969 – Apollo 11</strong>: First human landing on the Moon</div>
-          <div class="timeline-event"><strong>1990 – Hubble Space Telescope</strong>: Revolutionary deep-space observations</div>
-          <div class="timeline-event"><strong>2012 – Curiosity Rover</strong>: Advanced Mars surface exploration</div>
-          <div class="timeline-event"><strong>2021 – James Webb Space Telescope</strong>: Infrared study of early universe</div>
-          <div class="timeline-event"><strong>2025+ – Artemis Program</strong>: Sustainable lunar exploration</div>
+          <div class="timeline-event"><strong>1969 – Apollo 11</strong>: First human Moon landing by Neil Armstrong and Buzz Aldrin</div>
+          <div class="timeline-event"><strong>1990 – Hubble Space Telescope</strong>: Deep space imaging revolution</div>
+          <div class="timeline-event"><strong>2012 – Curiosity Rover</strong>: Mars geological exploration</div>
+          <div class="timeline-event"><strong>2021 – James Webb Space Telescope</strong>: Infrared early universe observation</div>
+          <div class="timeline-event"><strong>2025+ – Artemis Program</strong>: Sustainable lunar exploration and Mars preparation</div>
         </div>
       </div>
     </section>
 
+    <!-- Section 4: Apollo Program -->
     <section id="apollo">
       <h2>Apollo Spacecraft Structure</h2>
       <div class="card">
-        <img src="https://www.nasa.gov/wp-content/uploads/2023/12/apollo-csm-lm.jpg" alt="Apollo Spacecraft" class="diagram-img" />
-        <p>Complete Apollo stack: Command Module, Service Module, and Lunar Module.</p>
+        <img src="https://www.nasa.gov/sites/default/files/images/420692main_apollo_stack.jpg" alt="Apollo Spacecraft Configuration" class="diagram-img" />
+        <p>Official NASA high-resolution diagram showing Command Module, Service Module, and Lunar Module assembly.</p>
+        <p>The Apollo program successfully landed 12 astronauts on the Moon between 1969 and 1972.</p>
       </div>
     </section>
 
+    <!-- Section 5: ISRO Missions -->
     <section id="isro">
       <h2>ISRO Missions Timeline</h2>
       <div class="card">
         <div class="timeline">
-          <div class="timeline-event"><strong>2008 – Chandrayaan-1</strong>: Confirmed water molecules on Moon</div>
-          <div class="timeline-event"><strong>2013 – Mangalyaan</strong>: Successful Mars orbit insertion</div>
-          <div class="timeline-event"><strong>2023 – Chandrayaan-3</strong>: First soft landing near lunar south pole</div>
+          <div class="timeline-event"><strong>2008 – Chandrayaan-1</strong>: Confirmed water molecules on lunar surface</div>
+          <div class="timeline-event"><strong>2013 – Mangalyaan (MOM)</strong>: Successful Mars orbit on first attempt</div>
+          <div class="timeline-event"><strong>2023 – Chandrayaan-3</strong>: First soft landing near lunar south pole with rover deployment</div>
         </div>
       </div>
     </section>
 
+    <!-- Section 6: Solar System Planets -->
     <section id="planets">
       <h2>Solar System Planets</h2>
       <div class="planets-grid">
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2023/09/mercury-messenger-globe.jpg" alt="Mercury" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2023/09/mercury-messenger-globe.jpg?w=4096" alt="Mercury" class="planet-img" />
           <h3>Mercury</h3>
-          <p>Smallest planet with extreme temperatures</p>
+          <p>Smallest planet with extreme temperature swings and heavily cratered terrain</p>
         </div>
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2023/10/venus-magellan.jpg" alt="Venus" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2023/10/venus-magellan.jpg?w=4096" alt="Venus" class="planet-img" />
           <h3>Venus</h3>
-          <p>Hottest planet with thick atmosphere</p>
+          <p>Earth-sized with thick CO2 atmosphere and surface temperatures over 460°C</p>
         </div>
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2023/12/blue-marble-earth.jpg" alt="Earth" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2023/12/blue-marble-earth.jpg?w=4096" alt="Earth" class="planet-img" />
           <h3>Earth</h3>
-          <p>Only known planet with life</p>
+          <p>Third planet with liquid water, diverse life, and protective atmosphere</p>
         </div>
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2024/01/mars-hubble.jpg" alt="Mars" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2024/01/mars-hubble.jpg?w=4096" alt="Mars" class="planet-img" />
           <h3>Mars</h3>
-          <p>Red planet with ancient water evidence</p>
+          <p>Red planet with evidence of ancient rivers and largest volcano Olympus Mons</p>
         </div>
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2024/05/juno-jupiter-great-red-spot.jpg" alt="Jupiter" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2024/05/juno-jupiter-great-red-spot.jpg?w=4096" alt="Jupiter" class="planet-img" />
           <h3>Jupiter</h3>
-          <p>Largest planet with Great Red Spot</p>
+          <p>Largest planet with Great Red Spot storm and extensive moon system</p>
         </div>
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2023/11/cassini-saturn-rings.jpg" alt="Saturn" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2023/11/cassini-saturn-rings.jpg?w=4096" alt="Saturn" class="planet-img" />
           <h3>Saturn</h3>
-          <p>Iconic ring system</p>
+          <p>Gas giant with prominent ring system made of ice and rock</p>
         </div>
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2023/12/uranus-voyager.jpg" alt="Uranus" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2023/12/uranus-voyager.jpg?w=4096" alt="Uranus" class="planet-img" />
           <h3>Uranus</h3>
-          <p>Tilted ice giant</p>
+          <p>Ice giant with extreme axial tilt and faint rings</p>
         </div>
         <div class="planet-card">
-          <img src="https://science.nasa.gov/wp-content/uploads/2023/12/neptune-voyager.jpg" alt="Neptune" class="planet-img" />
+          <img src="https://science.nasa.gov/wp-content/uploads/2023/12/neptune-voyager.jpg?w=4096" alt="Neptune" class="planet-img" />
           <h3>Neptune</h3>
-          <p>Deep blue with strong winds</p>
+          <p>Deep blue planet with supersonic winds and dynamic atmosphere</p>
         </div>
       </div>
     </section>
 
+    <!-- Section 7: Black Holes -->
     <section id="blackholes">
       <h2>Black Holes & White Holes</h2>
       <div class="card">
-        <img src="https://svs.gsfc.nasa.gov/vis/a010000/a014100/a014146/black_hole_accretion_disk.jpg" alt="Black Hole" class="diagram-img" />
-        <p>Black holes have gravity so strong nothing escapes. White holes are theoretical opposites expelling matter.</p>
+        <img src="https://svs.gsfc.nasa.gov/vis/a010000/a014100/a014146/black_hole_accretion_disk.jpg" alt="Black Hole Visualization" class="diagram-img" />
+        <p>Black holes are regions where gravity is so strong that nothing, not even light, can escape beyond the event horizon.</p>
+        <p>White holes are theoretical opposites that would only expel matter and energy, predicted by general relativity but not observed.</p>
       </div>
     </section>
 
+    <!-- Section 8: Myth vs Science -->
     <section id="myths">
       <h2>Myth vs Science</h2>
       <div class="myth-grid">
         <div class="myth-card">
           <h3>Myth</h3>
-          <p>Great Wall visible from space</p>
+          <p>Great Wall of China is visible from space with naked eye</p>
           <h3>Science</h3>
-          <p>Not visible without aid from orbit</p>
+          <p>Not visible without aid from low Earth orbit</p>
         </div>
         <div class="myth-card">
           <h3>Myth</h3>
-          <p>Zero gravity in space</p>
+          <p>There is zero gravity in space</p>
           <h3>Science</h3>
-          <p>Microgravity from orbital freefall</p>
+          <p>Astronauts experience microgravity due to orbital freefall</p>
         </div>
         <div class="myth-card">
           <h3>Myth</h3>
-          <p>Sun is yellow</p>
+          <p>The Sun appears yellow</p>
           <h3>Science</h3>
-          <p>Emits white light</p>
+          <p>The Sun emits white light; atmosphere scatters blue wavelengths</p>
         </div>
         <div class="myth-card">
           <h3>Myth</h3>
-          <p>Moon has dark side</p>
+          <p>The Moon has a permanent dark side</p>
           <h3>Science</h3>
-          <p>Far side receives sunlight</p>
+          <p>The far side is tidally locked but receives equal sunlight</p>
         </div>
       </div>
     </section>
 
+    <!-- Section 9: Do You Know? -->
     <section id="dyk">
       <h2>Do You Know?</h2>
       <p id="dyk-text"></p>
@@ -403,19 +473,19 @@
   </main>
 
   <script>
-    // Smooth starfield animation
+    // High-performance starfield with 600 stars
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     const stars = [];
-    for (let i = 0; i < 400; i++) {
+    for (let i = 0; i < 600; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 1.8 + 0.5,
-        speed: Math.random() * 0.4 + 0.1
+        radius: Math.random() * 2.2 + 0.6,
+        speed: Math.random() * 0.6 + 0.15
       });
     }
 
@@ -427,7 +497,10 @@
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         ctx.fill();
         star.y += star.speed;
-        if (star.y > canvas.height) star.y = 0;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
       });
       requestAnimationFrame(animateStars);
     }
@@ -438,42 +511,52 @@
       canvas.height = window.innerHeight;
     });
 
-    // Smooth section reveal
+    // Smooth section reveal on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
 
     document.querySelectorAll('section').forEach(sec => observer.observe(sec));
 
-    // Active navigation
+    // Active navigation highlighting
     window.addEventListener('scroll', () => {
       let current = '';
       document.querySelectorAll('section').forEach(sec => {
-        if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
+        if (window.scrollY >= sec.offsetTop - 300) {
+          current = sec.id;
+        }
       });
       document.querySelectorAll('.nav-links a').forEach(a => {
         a.classList.remove('active');
-        if (a.getAttribute('href') === `#${current}`) a.classList.add('active');
+        if (a.getAttribute('href') === `#${current}`) {
+          a.classList.add('active');
+        }
       });
     });
 
-    // Hamburger menu
+    // Mobile hamburger menu toggle
     document.querySelector('.hamburger').addEventListener('click', () => {
       document.querySelector('.nav-links').classList.toggle('active');
     });
 
-    // Smooth fact rotation
+    // Dynamic fact rotation with smooth fade - white text
     const facts = [
-      "The Sun contains 99.86% of the Solar System's mass.",
-      "Venus has the longest day of any planet.",
+      "The Sun contains 99.86% of the Solar System's total mass.",
+      "Venus has the longest rotation period of any planet.",
       "There are more trees on Earth than stars in the Milky Way.",
-      "Neutron stars spin up to 700 times per second.",
-      "The universe is expanding at an accelerating rate."
+      "Neutron stars can rotate up to 700 times per second.",
+      "The universe's expansion is accelerating due to dark energy.",
+      "Jupiter has at least 95 confirmed moons.",
+      "Saturn's rings are primarily composed of water ice.",
+      "One million Earths could fit inside the Sun.",
+      "The Moon is gradually moving away from Earth.",
+      "Black holes can merge and produce gravitational waves."
     ];
+
     let index = 0;
     const dyk = document.getElementById('dyk-text');
     dyk.textContent = facts[0];
@@ -484,8 +567,8 @@
         index = (index + 1) % facts.length;
         dyk.textContent = facts[index];
         dyk.style.opacity = 1;
-      }, 600);
-    }, 6000);
+      }, 800);
+    }, 8000);
   </script>
 </body>
 </html>
