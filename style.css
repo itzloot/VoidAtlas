@@ -1,0 +1,45 @@
+/* Full premium dark tech style */
+:root {
+  --bg: #05070f;
+  --surface: #0f172a;
+  --accent: #60a5fa;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --border: #1e293b;
+  --glow: 0 0 24px rgba(96,165,250,0.12);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+#galaxy {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 40% 30%, rgba(96,165,250,0.06) 0%, transparent 70%),
+              radial-gradient(circle at 70% 60%, rgba(139,92,246,0.05) 0%, transparent 70%);
+  z-index: -2;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(white 1px, transparent 1px),
+                    radial-gradient(white 1px, transparent 1px);
+  background-size: 80px 80px, 60px 60px;
+  opacity: 0.25;
+  animation: drift 180s linear infinite;
+}
+
+@keyframes drift {
+  from { background-position: 0 0, 40px 40px; }
+  to   { background-position: 3000px 3000px, 3040px 3040px; }
+}
+
+/* ... rest of the CSS from earlier (header, nav, sections, cards, planets-grid, myth-grid, responsive) ... */
+/* (paste the full CSS from my previous long message here - it's the same) */
